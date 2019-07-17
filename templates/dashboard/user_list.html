@@ -1,0 +1,30 @@
+{% extends 'dashboard/layouts/base.html' %}
+
+{% block content %}
+<div class="righttopbox row">
+    <div class="col-sm-12">
+        <table class="table table-responsive">
+            <tr>
+                <td>Name</td>
+                <td>Email</td>
+                <td>Skype</td>
+                <td>Whatsapp</td>
+                <td>Twitter</td>
+                <td>Status</td>
+            </tr>
+            {% if users %}
+            {% for user in users %}
+            <tr>
+                <td>{{ user.first_name }} {{ user.last_name }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.profile.skype }}</td>
+                <td>{{ user.profile.whatsapp }}</td>
+                <td>{{ user.profile.twitter }}</td>
+                <td>{{ user.is_active }}</td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+        </table>
+    </div>
+</div>
+{% endblock content %}

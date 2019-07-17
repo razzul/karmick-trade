@@ -1,0 +1,43 @@
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <div class="logintop">
+          LOGIN
+          <h2>Welcome</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing Integer mattis ipsum consectetur adipiscing eros.</p>
+        </div>
+        <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <div class="loginbottom">
+          <div class="row">
+            {% for field in form %}
+            <div class="col-sm-6">
+              <div class="form-group">
+                {{ field }}
+                {% for error in field.errors %}
+                    <p style="color: red">{{ error }}</p>
+                {% endfor %}
+              </div>
+            </div>
+            {% endfor %}
+
+            <div class="col-sm-6">
+              <a href="#">Forgot password?</a>
+            </div>
+            <div class="col-sm-6">
+              <a href="#" class="textright" data-dismiss="modal" data-toggle="modal" data-target="#registerModal">Don’t Have An Account?</a>
+            </div>
+            <div class="col-sm-6">
+              <input type="submit" value="Login" class="popbutton">
+            </div>
+          </div>
+        </div>
+        </form>
+      </div>
+      
+    </div>
+  </div>
+</div>

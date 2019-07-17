@@ -1,0 +1,103 @@
+{% extends 'auth/layouts/base.html' %}
+
+{% block content %}
+<div class="container">
+    <ul class="progress-indicator">
+        <li class="completed">
+            <div>Sign up</div>
+            <span class="bubble"></span>    
+        </li>
+        <li class="completed">
+            <div>Build Risk Profile</div>
+            <span class="bubble"></span>    
+        </li>
+        <li >
+            <div>Pick Product</div>
+            <span class="bubble"></span>    
+        </li>
+        <li>
+            <div>Review</div>
+            <span class="bubble"></span>    
+        </li>
+        <li>
+            <div> Run</div>
+            <span class="bubble"></span>
+        </li>
+    </ul>
+
+    <div class="stepdiv">
+        <div class="logintop">
+            <h2>Build Risk Pro</h2>
+       </div>
+
+        <div class="creatouter">
+            
+            <form method="post">
+            {% csrf_token %}
+            <div class="loginbottom">
+            <div class="row">
+
+                    {% for field in form %}
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <p>{{ field.label_tag }}</p>
+                            {{ field }}
+
+                            {% for error in field.errors %}
+                                <p class="label label-danger">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                    <div class="col-sm-12">
+                        <h3>Investment Universe Selection</h3>
+                    </div>
+                    <div class="col-sm-6">
+                    <div class="form-group">
+                    <select class="form-control"><option>MAJOR</option></select>
+                    </div>
+                    </div>
+                    <div class="col-sm-6">
+                    <div class="form-group">
+                    <select class="form-control"><option>MAJOR</option></select>
+                    </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                    <div class="form-group">
+                    <select class="form-control"><option>Australasion</option></select>
+                    </div>
+                    </div>
+                    <div class="col-sm-6">
+                    <div class="form-group">
+                    <select class="form-control"><option>Scandinavian</option></select>
+                    </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                    <div class="form-group">
+                    <select class="form-control"><option>Exotic</option></select>
+                    </div>
+                    </div>
+                    <div class="col-sm-6">
+                    <div class="form-group">
+                    <select class="form-control"><option>Emerging Merkets</option></select>
+                    </div>
+                    </div>
+                    
+
+                    <div class="col-sm-6">
+                        <input type="submit" value="Submit" class="popbutton">
+                    </div>
+                    <!-- <div class="col-sm-6">
+                        <input type="button" value="Cancel" class="cancelbutton" onclick="window.location.href='index.html'">
+                    </div> -->
+                </div>
+            </div>
+            </form>
+            <div class=""></div>
+        </div>
+    </div>
+</div>
+{% endblock %}

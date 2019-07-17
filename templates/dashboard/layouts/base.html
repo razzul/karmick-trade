@@ -1,0 +1,111 @@
+{% load static %}
+
+{% include 'dashboard/layouts/header.html' %}
+
+<body>
+
+{% include 'dashboard/layouts/content_header.html' %}
+
+<section class="bodyinner">
+    {% include 'dashboard/layouts/leftpannel.html' %}
+
+    <div class="rightpannel">
+        {% block content %}
+        {% endblock content %}
+    </div>
+
+    <div class="clearfix"></div>
+</section>
+
+<footer> ©2019 Invest IQ. All rights reserved. </footer>
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="{% static 'web-admin/js/jquery.min.js' %}"></script> 
+<!-- Bootstrap Js --> 
+<script src="{% static 'web-admin/js/bootstrap.js' %}"></script> 
+<!-- Bootstrap Js --> 
+
+<!-- for banner slider --> 
+<script src="{% static 'web-admin/js/responsiveslides.min.js' %}"></script> 
+<script>
+    $(function () {
+      $("#slider4").responsiveSlides({
+        auto: true,
+        pager: false,
+        nav: true,
+        speed: 1500,
+        namespace: "callbacks",
+        before: function () {
+          $('.events').append("<li>before event fired.</li>");
+        },
+        after: function () {
+          $('.events').append("<li>after event fired.</li>");
+        }
+      });
+
+    });
+  </script> 
+<!-- for banner slider --> 
+<!-- for resize header js --> 
+<script src="{% static 'web-admin/js/classie.js' %}"></script> 
+<script>
+function init() {
+window.addEventListener('scroll', function(e){
+ var distanceY = window.pageYOffset || document.documentElement.scrollTop,
+shrinkOn = 100,
+ header = document.querySelector("header");
+if (distanceY > shrinkOn) {
+classie.add(header,"smaller");
+} else {
+if (classie.has(header,"smaller")) {
+classie.remove(header,"smaller");
+ }
+}
+});
+ }
+ window.onload = init();
+</script> 
+<!-- for resize header js --> 
+<script src="{% static 'web-admin/js/script.js' %}"></script> 
+<!-- for tab js --> 
+<script type="text/javascript">
+$(document).ready(function() {
+
+	$(".tab_content").hide();
+	$(".tab_content:first").show(); 
+
+	$("ul.tabs li").click(function() {
+		$("ul.tabs li").removeClass("active");
+		$(this).addClass("active");
+		$(".tab_content").hide();
+		var activeTab = $(this).attr("rel"); 
+		$("#"+activeTab).fadeIn(); 
+	});
+});
+
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $(".showHide").click(function(e){
+  	 e.preventDefault();
+    $(this).next(".contentArea").toggle(500);
+	if($(this).is('.plus')){
+		$(this).addClass('minus');
+		$(this).removeClass('plus');
+	}else{
+		$(this).addClass('plus');
+		$(this).removeClass('minus');
+		
+	}
+  });
+});
+</script>
+</body>
+</html>

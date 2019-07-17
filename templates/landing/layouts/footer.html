@@ -1,0 +1,109 @@
+{% load static %}
+<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+<!-- Bootstrap Js --> 
+<script src="{% static 'js/bootstrap.js' %}"></script> 
+<!-- Bootstrap Js --> 
+<!-- for banner slider --> 
+<script src="{% static 'js/responsiveslides.min.js' %}"></script>
+<script>
+    $(function () {
+      $("#slider4").responsiveSlides({
+        auto: true,
+        pager: false,
+        nav: true,
+        speed: 1500,
+        namespace: "callbacks",
+        before: function () {
+          $('.events').append("<li>before event fired.</li>");
+        },
+        after: function () {
+          $('.events').append("<li>after event fired.</li>");
+        }
+      });
+
+    });
+  </script>
+<!-- for banner slider --> 
+<!-- for resize header js -->
+<script src="{% static 'js/classie.js' %}"></script>
+<script>
+function init() {
+window.addEventListener('scroll', function(e){
+ var distanceY = window.pageYOffset || document.documentElement.scrollTop,
+shrinkOn = 100,
+ header = document.querySelector("header");
+if (distanceY > shrinkOn) {
+classie.add(header,"smaller");
+} else {
+if (classie.has(header,"smaller")) {
+classie.remove(header,"smaller");
+ }
+}
+});
+ }
+ window.onload = init();
+</script>
+<!-- for resize header js -->  
+<script src="{% static 'js/script.js' %}"></script>
+<!-- for tab js --> 
+<script type="text/javascript">
+$(document).ready(function() {
+
+	$(".tab_content").hide();
+	$(".tab_content:first").show(); 
+
+	$("ul.tabs li").click(function() {
+		$("ul.tabs li").removeClass("active");
+		$(this).addClass("active");
+		$(".tab_content").hide();
+		var activeTab = $(this).attr("rel"); 
+		$("#"+activeTab).fadeIn(); 
+	});
+
+    // $(".popbutton").click(function(){
+        // window.location.href = '/web-admin'
+    // })
+    $(".getstarted").click(function(){
+        window.location.href = '/account/signup'
+    })
+});
+
+</script> 
+
+<script>
+// id_username, id_first_name, id_last_name, id_email, id_password1, id_password2
+
+$('#signup').click(function(e){
+  e.preventDefault();
+  var csrf_token = $('[name="csrfmiddlewaretoken"]').val()
+  var id_username = $('#id_username').val()
+  var id_first_name = $('#id_first_name').val()
+  var id_last_name = $('#id_last_name').val()
+  var id_email = $('#id_email').val()
+  var id_password1 = $('#id_password1').val()
+  var id_password2 = $('#id_password2').val()
+  
+  $.ajax({
+    method: 'POST',
+    url: "{% url 'signup' %}",
+    data: {
+      'csrfmiddlewaretoken': csrf_token,
+      'username': id_username,
+      'first_name': id_first_name,
+      'last_name': id_last_name,
+      'email': id_email,
+      'password1': id_password1,
+      'password2': id_password2
+    },
+    dataType: 'json',
+    success: function (data) {
+      console.log(data);
+    }
+  })
+})
+</script>
+{% block script %}
+{% endblock script %}
+
+</body>
+</html>

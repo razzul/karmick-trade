@@ -1,0 +1,75 @@
+{% extends 'auth/layouts/base.html' %}
+
+{% block content %}
+<div class="container">
+    <ul class="progress-indicator">
+        <li class="completed">
+            <div>Sign up</div>
+            <span class="bubble"></span>    
+        </li>
+        <li>
+            <div>Build Risk Profile</div>
+            <span class="bubble"></span>    
+        </li>
+        <li >
+            <div>Pick Product</div>
+            <span class="bubble"></span>    
+        </li>
+        <li>
+            <div>Review</div>
+            <span class="bubble"></span>    
+        </li>
+        <li>
+            <div> Run</div>
+            <span class="bubble"></span>
+        </li>
+    </ul>
+
+    <div class="stepdiv">
+        <div class="logintop">
+            CREATE ACCOUNT
+            <h2>Hi there!</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing Integer mattis ipsum consectetur adipiscing eros.</p>
+       </div>
+
+        <div class="creatouter">
+            
+            <form method="post">
+            {% csrf_token %}
+            <div class="loginbottom">
+                <div class="row">
+                    {% for field in form %}
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <p>{{ field.label_tag }}</p>
+                            {{ field }}
+
+                            {% for error in field.errors %}
+                                <p class="label label-danger">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                    
+                    <div class="col-sm-12">
+                        <div class="checkboxsec">
+                            <label class="checkcontainer">I agree to the terms of service
+                                <input type="radio" name="radio">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="submit" value="Create Profile" class="popbutton">
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="button" value="Cancel" class="cancelbutton" onclick="window.location.href='index.html'">
+                    </div>
+                </div>
+            </div>
+            </form>
+            <div class=""></div>
+        </div>
+    </div>
+</div>
+{% endblock %}

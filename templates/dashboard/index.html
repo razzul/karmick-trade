@@ -1,0 +1,201 @@
+{% extends 'dashboard/layouts/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="righttopbox row">
+      <div class="col-sm-3">
+        <div class="innerbox green"> <span class="imagespan"><img src="{% static 'web-admin/images/boxicon1.png' %}"  alt=""/></span> Margin available
+          <div class="price">$200</div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="innerbox blue"> <span class="imagespan"><img src="{% static 'web-admin/images/boxicon2.png' %}"  alt=""/></span> Margin used
+          <div class="price">$100</div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="innerbox yellow"> <span class="imagespan"><img src="{% static 'web-admin/images/boxicon3.png' %}"  alt=""/></span> Profit
+          <div class="price">$200</div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="innerbox red"> <span class="imagespan"><img src="{% static 'web-admin/images/boxicon4.png' %}"  alt=""/></span> Total
+          <div class="price">$500</div>
+        </div>
+      </div>
+    </div>
+    <div class="rightmiddlebox row">
+      <div class="col-sm-8">
+        <div class="innerblacksec"> <h2></h2><div class="showHide"><a href="#">&nbsp;</a></div><div class="contentArea"><img src="{% static 'web-admin/images/graph1.jpg' %}"  alt=""/> </div></div>
+      </div>
+      <div class="col-sm-4">
+        <div class="rightgreenbox"> <img src="{% static 'web-admin/images/balenceicon.png' %}"  alt=""/>
+          <div class="currentbalence"> Current Balance <span>$1000</span> </div>
+          <p>The Amount after Investment</p>
+        </div>
+      </div>
+    </div>
+    <div class="rightmiddlebox row">
+      <div class="col-sm-6">
+        <div class="innerblacksec">
+          <h2> Portfolio</h2>
+          <div class="showHide"><a href="#">&nbsp;</a></div>
+          <div class="contentArea">
+          <div class="table-responsive ">
+          <table class="table ">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Size</th>
+                <th>Amount</th>
+                <th>Opening Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>02/07/19</td>
+                <td>8</td>
+                <td>Bought $200</td>
+                <td>$200</td>
+              </tr>
+              <tr>
+                <td>02/07/19</td>
+                <td>8</td>
+                <td>Bought $200</td>
+                <td>$200</td>
+              </tr>
+             <tr>
+                <td>02/07/19</td>
+                <td>8</td>
+                <td>Bought $200</td>
+                <td>$200</td>
+              </tr>
+              <tr>
+                <td>02/07/19</td>
+                <td>8</td>
+                <td>Bought $200</td>
+                <td>$200</td>
+              </tr>
+              <tr>
+                <td>02/07/19</td>
+                <td>8</td>
+                <td>Bought $200</td>
+                <td>$200</td>
+              </tr>
+              <tr>
+                <td>02/07/19</td>
+                <td>8</td>
+                <td>Bought $200</td>
+                <td>$200</td>
+              </tr>
+               <tr>
+                <td>02/07/19</td>
+                <td>8</td>
+                <td>Bought $200</td>
+                <td>$200</td>
+              </tr>
+            </tbody>
+          </table>
+          </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+      
+        <div class="innerblacksec"> <h2>&nbsp; </h2><div class="showHide"><a href="#">&nbsp;</a></div><div class="contentArea"><img src="{% static 'web-admin/images/graph2.jpg' %}"  alt=""/> </div></div>
+      </div>
+    </div>
+    <div class="rightmiddlebox row">
+      <div class="col-sm-7">
+        <div class="innerblacksec">
+          <h2> Trade Signals</h2>
+          <div class="showHide"><a href="#">&nbsp;</a></div>
+          <div class="contentArea">
+          <div class="table-responsive">
+          <table class="table ">
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Sourch</th>
+                <th>Direction</th>
+                <th>Published</th>
+                <th>Accuracy</th>
+                <th>spread</th>
+                <th>prediction</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>FTSE 100</td>
+                <td>Autochartist</td>
+                <td class="greentext">Bye</td>
+                <td>12:10</td>
+                <td>10</td>
+                <td>6</td>
+                <td>3</td>
+              </tr>
+              <tr>
+                <td>FTSE 100</td>
+                <td>Autochartist</td>
+                <td class="greentext">Bye</td>
+                <td>12:10</td>
+                <td>10</td>
+                <td>6</td>
+                <td>3</td>
+              </tr>
+              <tr>
+                <td>FTSE 100</td>
+                <td>Autochartist</td>
+                <td class="redtext">Sell</td>
+                <td>12:10</td>
+                <td>10</td>
+                <td>6</td>
+                <td>3</td>
+              </tr>
+              <tr>
+                <td>FTSE 100</td>
+                <td>Autochartist</td>
+                <td class="greentext">Bye</td>
+                <td>12:10</td>
+                <td>10</td>
+                <td>6</td>
+                <td>3</td>
+              </tr>
+              <tr>
+                <td>FTSE 100</td>
+                <td>Autochartist</td>
+                <td class="redtext">Sell</td>
+                <td>12:10</td>
+                <td>10</td>
+                <td>6</td>
+                <td>3</td>
+              </tr>
+              <tr>
+                <td>FTSE 100</td>
+                <td>Autochartist</td>
+                <td class="greentext">Bye</td>
+                <td>12:10</td>
+                <td>10</td>
+                <td>6</td>
+                <td>3</td>
+              </tr>
+              <tr>
+                <td>FTSE 100</td>
+                <td>Autochartist</td>
+                <td class="greentext">Bye</td>
+                <td>12:10</td>
+                <td>10</td>
+                <td>6</td>
+                <td>3</td>
+              </tr>
+            </tbody>
+          </table>
+          </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-5">
+         <div class="innerblacksec"> <h2>Automated Trades</h2><div class="showHide"><a href="#">&nbsp;</a></div><div class="contentArea"><img src="{% static 'web-admin/images/graph3.jpg' %}"  alt=""/> </div></div>
+      </div>
+    </div>
+{% endblock content %}

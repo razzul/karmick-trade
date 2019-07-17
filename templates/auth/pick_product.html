@@ -1,0 +1,129 @@
+{% extends 'auth/layouts/base.html' %}
+
+{% block content %}
+<div class="container">
+    <ul class="progress-indicator">
+        <li class="completed">
+            <div>Sign up</div>
+            <span class="bubble"></span>    
+        </li>
+        <li class="completed">
+            <div>Build Risk Profile</div>
+            <span class="bubble"></span>    
+        </li>
+        <li class="completed">
+            <div>Pick Product</div>
+            <span class="bubble"></span>    
+        </li>
+        <li>
+            <div>Review</div>
+            <span class="bubble"></span>    
+        </li>
+        <li>
+            <div> Run</div>
+            <span class="bubble"></span>
+        </li>
+    </ul>
+
+    <div class="stepdiv">
+        <div class="logintop">
+            <h2>Pick Product</h2>
+        </div>
+        <div class="creatouter">      
+            <div class="loginbottom">
+                <form method="post">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="radio">
+                            <input id="premiumsignals" type="radio" name="hirework" value="premium">
+                            <label for="premiumsignals"><span>Invest IQ Premium Signals</span> </label>
+                            <input id="automatedtrading" type="radio" name="hirework" value="premium">
+                            <label for="automatedtrading"><span>Invest IQ Automated Trading</span></label>
+                            <input id="managedservice" type="radio" name="hirework" value="iqmanaged" >
+                            <label for="managedservice"><span>Invest IQ Managed Service</span></label>
+                        </div>
+
+                        <div class="box premium">
+                            <h4>Set Algorithm</h4>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <input type="number" name="perdiction_accuracy" class="form-control" id="id_perdiction_accuracy">
+                                            {{ form.perdiction_accuracy.errors }}
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <input type="number" name="price_charge_hight" class="form-control" id="id_price_charge_hight">
+                                            {{ form.price_charge_hight.errors }}
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <input type="number" name="price_charge_low" class="form-control" id="id_price_charge_low">
+                                            {{ form.price_charge_low.errors }}
+                                        </div>
+                                    </div>
+                                </div>
+      
+                                <div class="row shortcheck">
+                                    <div class="col-sm-10">
+   		                                Use client Sentiment
+                                    </div>
+                                    <div class="col-sm-2">
+   		                                <label><input type="checkbox" name="use_client_sentiment" class="form-control" id="id_use_client_sentiment"> yes</label>
+                                        {{ form.use_client_sentiment.errors }}
+                                    </div>
+                                </div>
+                                
+                                <div class="row shortcheck">
+                                    <div class="col-sm-10">
+   		                                client Sentiment Contrarian
+                                    </div>
+                                    <div class="col-sm-2">
+   		                                <label><input type="checkbox" name="client_sentiment_contrarian" class="form-control" id="id_client_sentiment_contrarian"> yes</label>
+                                        {{ form.client_sentiment_contrarian.errors }}
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <input type="text" name="client_sentiment_value" class="form-control" id="id_client_sentiment_value">
+                                            {{ form.client_sentiment_value.errors }}
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <input type="text" name="watermark" class="form-control" id="id_watermark">
+                                            {{ form.watermark.errors }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                           
+                            <div class="box iqmanaged">
+                                <p>The Invest IQ Managed service  has been created for clients who want a fully tailored service with access to the full suite of analysis,  Whether you’re considering investing for the first time or switching from an existing provider, our managed portfolio service could be the ideal solution. For more information including details of our charging structure, please contact us at <a href="mailto:info@divergence capital.com">info@divergence capital.com</a></p>    
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <input type="button" value="Back" class="cancelbutton" onclick="window.location.href='{% url 'build_risk_pro' %}'">
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="submit" value="SUBMIT" class="popbutton">
+                        </div>
+                    </div>
+                </div>
+                </form>
+                <div class=""></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

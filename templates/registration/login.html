@@ -1,0 +1,50 @@
+{% extends 'auth/layouts/base.html' %}
+
+{% block content %}
+<div class="container">
+    
+    <div class="stepdiv" style="margin-top: 0;">
+        <div class="logintop">
+            LOGIN
+            <h2>Welcome</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing Integer mattis ipsum consectetur adipiscing eros.</p>
+       </div>
+
+        <div class="creatouter">
+            
+            <form method="post">
+            {% csrf_token %}
+            <div class="loginbottom">
+                <div class="row">
+                    {% for field in form %}
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <p>{{ field.label_tag }}</p>
+                            {{ field }}
+
+                            {% for error in field.errors %}
+                                <p style="color: red">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <div class="col-sm-12">
+                        {% if form.errors %}
+                            <p class=" label label-danger">
+                                Your username and password didn't match. 
+                                Please try again.
+                            </p>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="col-sm-6">
+                        <input type="submit" value="Login" class="popbutton">
+                    </div>
+                </div>
+            </div>
+            </form>
+            <div class=""></div>
+        </div>
+    </div>
+</div>
+{% endblock %}
