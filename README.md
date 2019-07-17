@@ -1,0 +1,2 @@
+# karmick-trade
+django
