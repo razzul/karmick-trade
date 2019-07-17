@@ -4,6 +4,8 @@ from django.http import HttpResponse
 from account.forms import AuthUserCreationForm, AuthUserChangeForm, AuthUserLoginForm, AuthUserBuildRiskForm, AuthUserPickProductForm
 from django.contrib.auth.decorators import login_required
 from account.models import AuthUser, Profile
+import smtplib
+from email.mime.text import MIMEText
 
 # Create your views here.
 def login(request):
@@ -41,6 +43,16 @@ def signup(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             core_login(request, user)
+            # email
+            msg = MIMEText('Testing some Mailgun awesomness')
+            msg['Subject'] = "Hello"
+            msg['From']    = "rajul@karmicksolutions.com"
+            msg['To']      = "rajulmondal5@gmail.com"
+            s = smtplib.SMTP('smtp.mailgun.org', 587)
+            s.login('rajul@mg.pluse.website', '7d0341fa7620512de6068835636cf421-fd0269a6-47d1a988')
+            s.sendmail(msg['From'], msg['To'], msg.as_string())
+            s.quit()
+
             return redirect('build_risk_pro')
     else:
         form = AuthUserCreationForm()
@@ -66,7 +78,9 @@ def build_risk_pro(request):
 
             return redirect('pick_product')
     else:
-        form = AuthUserBuildRiskForm()
+        user = request.user
+        data = {'max_spread': user.profile.max_spread, 'size': user.profile.size, 'profit_limit': user.profile.profit_limit, 'stop_limit': user.profile.stop_limit}
+        form = AuthUserBuildRiskForm(initial=data)
 
     return render(request, 'auth/build_risk_pro.html', {'form': form})
 
@@ -78,17 +92,37 @@ def pick_product(request):
         if form.is_valid():
             user = request.user
             user.refresh_from_db()  # load the profile instance created by the signal
-            user.profile.perdiction_accuracy = form.cleaned_data.get('perdiction_accuracy')
-            user.profile.price_charge_hight = form.cleaned_data.get('price_charge_hight')
-            user.profile.price_charge_low = form.cleaned_data.get('price_charge_low')
-            user.profile.use_client_sentiment = form.cleaned_data.get('use_client_sentiment')
-            user.profile.client_sentiment_contrarian = form.cleaned_data.get('client_sentiment_contrarian')
-            user.profile.client_sentiment_value = form.cleaned_data.get('client_sentiment_value')
-            user.profile.watermark = form.cleaned_data.get('watermark')
+            user.profile.product = form.cleaned_data.get('product')
+            if (user.profile.product != '3'):
+                user.profile.perdiction_accuracy = form.cleaned_data.get('perdiction_accuracy')
+                user.profile.price_charge_hight = form.cleaned_data.get('price_charge_hight')
+                user.profile.price_charge_low = form.cleaned_data.get('price_charge_low')
+                user.profile.use_client_sentiment = form.cleaned_data.get('use_client_sentiment')
+                user.profile.client_sentiment_contrarian = form.cleaned_data.get('client_sentiment_contrarian')
+                user.profile.client_sentiment_value = form.cleaned_data.get('client_sentiment_value')
+                user.profile.watermark = form.cleaned_data.get('watermark')
+            else:
+                user.profile.perdiction_accuracy = '0'
+                user.profile.price_charge_hight = '0'
+                user.profile.price_charge_low = '0'
+                user.profile.use_client_sentiment = 'no'
+                user.profile.client_sentiment_contrarian = 'no'
+                user.profile.client_sentiment_value = ''
+                user.profile.watermark = ''
             user.save()
 
-            return redirect('user_list')
+            return redirect('review')
     else:
+        # user = request.user
+        # data = {'product': user.profile.product,'perdiction_accuracy': user.profile.perdiction_accuracy, 'price_charge_hight': user.profile.price_charge_hight, 'price_charge_low': user.profile.price_charge_low, 'use_client_sentiment': user.profile.use_client_sentiment, 'client_sentiment_contrarian': user.profile.client_sentiment_contrarian, 'client_sentiment_value': user.profile.client_sentiment_value, 'watermark': user.profile.watermark}
         form = AuthUserPickProductForm()
 
     return render(request, 'auth/pick_product.html', {'form': form})
+
+@login_required
+def review(request):
+    return render(request, 'auth/review.html', {})
+
+@login_required
+def run(request):
+    return render(request, 'auth/run.html', {})

@@ -1,10 +1,10 @@
 {% load static %}
 <header>
   <div class="container-fluid">
-    <div class="logo"><a href="index.html"><img src="{% static 'web-admin/images/logo.png' %}" title="Invest IQ"  alt=""/></a></div>
+    <div class="logo"><a href="/web-admin/"><img src="{% static 'web-admin/images/logo.png' %}" title="Invest IQ"  alt=""/></a></div>
     <div class="rightbutt"> <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{% static 'web-admin/images/profilepic.jpg' %}"  alt=""/>Adam</a> 
     <ul class="dropdown-menu" aria-labelledby="dLabel">
-    <li><a href="#">Profile</a></li>
+    <li><a href="{% url 'build_risk_pro' %}">Profile</a></li>
     <li><a href="#">Setting</a></li>
     <li><a href="{% url 'logout' %}">Logout</a></li>
   </ul>

@@ -1,0 +1,57 @@
+{% extends 'auth/layouts/base.html' %}
+
+{% block content %}
+<div class="container">
+
+<ul class="progress-indicator">
+            <li class="completed">
+            <div>Sign up</div>
+                <span class="bubble"></span>
+                
+            </li>
+            <li class="completed">
+            <div>Build Risk Profile</div>
+                <span class="bubble"></span>
+                
+            </li>
+            <li class="completed">
+           <div>Pick Product</div>
+                <span class="bubble"></span>
+                
+            </li>
+            <li class="completed">
+            <div>Review</div>
+                <span class="bubble"></span>
+                
+            </li>
+            <li class="completed">
+           <div> Run</div>
+                <span class="bubble"></span>
+                
+            </li>
+        </ul>
+<div class="stepdiv">
+<div class="logintop">
+       <h2>Run</h2>
+       </div>
+ <div class="creatouter">      
+<div class="loginbottom">
+<div class="row">
+    
+
+<div class="col-sm-6">
+<input type="button" value="Cancel" class="cancelbutton" onclick="window.location.href='{% url 'dashboard' %}'">
+</div>
+<div class="col-sm-6">
+<input type="button" value="Run" class="popbutton" onclick="window.location.href='{% url 'run' %}'">
+</div>
+</div>
+
+</div>
+<div class=""></div>
+</div>
+</div>
+
+
+</div>
+{% endblock content %}

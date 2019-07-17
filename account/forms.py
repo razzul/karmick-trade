@@ -12,8 +12,8 @@ class AuthUserLoginForm(AuthenticationForm):
 class AuthUserCreationForm(UserCreationForm):
     first_name = forms.CharField(max_length=30, required=False)
     last_name = forms.CharField(max_length=30, required=False)
-    password1 = forms.CharField(max_length=30, required=True)
-    password2 = forms.CharField(max_length=30, required=True)
+    password1 = forms.CharField(max_length=30, required=True, widget=forms.PasswordInput())
+    password2 = forms.CharField(max_length=30, required=True, widget=forms.PasswordInput())
     email = forms.EmailField(max_length=254, required=True)
     skype = forms.CharField(max_length=30, required=False)
     whatsapp = forms.CharField(max_length=30, required=False)
@@ -56,10 +56,10 @@ class AuthUserChangeForm(UserChangeForm):
         fields = {'email'}
 
 class AuthUserBuildRiskForm(UserCreationForm):
-    max_spread = forms.IntegerField(required=False)
-    size = forms.IntegerField(required=False)
-    profit_limit = forms.IntegerField(required=False)
-    stop_limit = forms.IntegerField(required=False)
+    max_spread = forms.FloatField(required=True)
+    size = forms.FloatField(required=True)
+    profit_limit = forms.FloatField(required=True)
+    stop_limit = forms.FloatField(required=True)
     password1 = None
     password2 = None
 
@@ -79,17 +79,48 @@ class AuthUserBuildRiskForm(UserCreationForm):
         model = AuthUser
         fields = ('max_spread', 'size', 'profit_limit', 'stop_limit',)
 
+# class AuthUserInvestmentForm(UserCreationForm):
+    # currency1 = forms.ChoiceField(
+    #     required=True, 
+    #     choices=[('eur_usd', 'EUR'), ('gbp_usd', 'GBP'), ('usd', 'USD'), ('btc', 'BTC'), ('ltc', 'LTC'), ('eth', 'ETH')]
+    # )
+    #     currency_2 = forms.ChoiceField(required=True, choices=[('eur_usd', 'EUR'), ('gbp_usd', 'GBP'), ('usd', 'USD'), ('btc', 'BTC'), ('ltc', 'LTC'), ('eth', 'ETH')])
+    #     currency_3 = forms.ChoiceField(required=True, choices=[('eur_usd', 'EUR'), ('gbp_usd', 'GBP'), ('usd', 'USD'), ('btc', 'BTC'), ('ltc', 'LTC'), ('eth', 'ETH')])
+    #     currency_4 = forms.ChoiceField(required=True, choices=[('eur_usd', 'EUR'), ('gbp_usd', 'GBP'), ('usd', 'USD'), ('btc', 'BTC'), ('ltc', 'LTC'), ('eth', 'ETH')])
+    #     currency_5 = forms.ChoiceField(required=True, choices=[('eur_usd', 'EUR'), ('gbp_usd', 'GBP'), ('usd', 'USD'), ('btc', 'BTC'), ('ltc', 'LTC'), ('eth', 'ETH')])
+    #     currency_6 = forms.ChoiceField(required=True, choices=[('eur_usd', 'EUR'), ('gbp_usd', 'GBP'), ('usd', 'USD'), ('btc', 'BTC'), ('ltc', 'LTC'), ('eth', 'ETH')])
+    #     password1 = None
+    #     password2 = None
+
+    #     # max_spread.widget.attrs['class'] = 'form-control'
+    #     # # first_name.widget.attrs['placeholder'] = 'First Name'
+
+    #     # size.widget.attrs['class'] = 'form-control'
+    #     # # last_name.widget.attrs['placeholder'] = 'Last Name'
+
+    #     # profit_limit.widget.attrs['class'] = 'form-control'
+    #     # # password1.widget.attrs['placeholder'] = 'Password'
+
+    #     # stop_limit.widget.attrs['class'] = 'form-control'
+    #     # # password2.widget.attrs['placeholder'] = 'Password Confirmation'
+
+    # class Meta(UserCreationForm):
+    #     model = AuthUser
+    #     fields = ('currency_1')
+
 class AuthUserPickProductForm(UserCreationForm):
-    perdiction_accuracy = forms.IntegerField(required=False)
-    price_charge_hight = forms.IntegerField(required=False)
-    price_charge_low = forms.IntegerField(required=False)
-    use_client_sentiment = forms.BooleanField(required=False)
-    client_sentiment_contrarian = forms.BooleanField(required=False)
+    product = forms.ChoiceField(choices=[('1', 'Invest IQ Premium Signals'), ('2', 'Invest IQ Automated Trading'), ('3', 'Invest IQ Managed Service')], widget=forms.RadioSelect)
+    perdiction_accuracy = forms.FloatField(required=False)
+    price_charge_hight = forms.FloatField(required=False)
+    price_charge_low = forms.FloatField(required=False)
+    use_client_sentiment = forms.ChoiceField(required=False, choices=[('yes', 'Yes'), ('no', 'No')], widget=forms.RadioSelect)
+    client_sentiment_contrarian = forms.ChoiceField(required=False, choices=[('yes', 'Yes'), ('no', 'No')], widget=forms.RadioSelect)
     client_sentiment_value = forms.CharField(required=False)
     watermark = forms.CharField(required=False)
     password1 = None
     password2 = None
 
+    product.widget.attrs['class'] = 'form-control'
     perdiction_accuracy.widget.attrs['class'] = 'form-control'
     price_charge_hight.widget.attrs['class'] = 'form-control'
     price_charge_low.widget.attrs['class'] = 'form-control'
@@ -100,4 +131,4 @@ class AuthUserPickProductForm(UserCreationForm):
 
     class Meta(UserCreationForm):
         model = AuthUser
-        fields = ('perdiction_accuracy', 'price_charge_hight', 'price_charge_low', 'use_client_sentiment', 'client_sentiment_contrarian', 'client_sentiment_value', 'watermark')
+        fields = ('product', 'perdiction_accuracy', 'price_charge_hight', 'price_charge_low', 'use_client_sentiment', 'client_sentiment_contrarian', 'client_sentiment_value', 'watermark')

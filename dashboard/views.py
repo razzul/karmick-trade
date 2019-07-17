@@ -7,5 +7,5 @@ def index(request):
     return render(request, 'dashboard/index.html', {})
 
 def user_list(request):
-    users = AuthUser.objects.all()
+    users = AuthUser.objects.filter(admin=False)
     return render(request, 'dashboard/user_list.html', {'users': users})

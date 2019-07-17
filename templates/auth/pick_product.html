@@ -36,75 +36,99 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="radio">
-                            <input id="premiumsignals" type="radio" name="hirework" value="premium">
+                            <input id="premiumsignals" type="radio" name="product" {% if user.profile.product == '1'%}checked="checked"{% endif %} value="1" data-box="premium" required="">
                             <label for="premiumsignals"><span>Invest IQ Premium Signals</span> </label>
-                            <input id="automatedtrading" type="radio" name="hirework" value="premium">
+                            <input id="automatedtrading" type="radio" name="product" {% if user.profile.product == '2'%}checked="checked"{% endif %} value="2" data-box="premium" required="">
                             <label for="automatedtrading"><span>Invest IQ Automated Trading</span></label>
-                            <input id="managedservice" type="radio" name="hirework" value="iqmanaged" >
+                            <input id="managedservice" type="radio" name="product" {% if user.profile.product == '3'%}checked="checked"{% endif %} value="3" data-box="iqmanaged" required="">
                             <label for="managedservice"><span>Invest IQ Managed Service</span></label>
                         </div>
 
                         <div class="box premium">
                             <h4>Set Algorithm</h4>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <input type="number" name="perdiction_accuracy" class="form-control" id="id_perdiction_accuracy">
-                                            {{ form.perdiction_accuracy.errors }}
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <input type="number" name="price_charge_hight" class="form-control" id="id_price_charge_hight">
-                                            {{ form.price_charge_hight.errors }}
-                                        </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <input type="number" name="perdiction_accuracy" class="form-control" id="id_perdiction_accuracy" value="{{ user.profile.perdiction_accuracy }}" step="any">
+                                        {{ form.perdiction_accuracy.errors }}
                                     </div>
                                 </div>
-                                
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <input type="number" name="price_charge_low" class="form-control" id="id_price_charge_low">
-                                            {{ form.price_charge_low.errors }}
-                                        </div>
-                                    </div>
-                                </div>
-      
-                                <div class="row shortcheck">
-                                    <div class="col-sm-10">
-   		                                Use client Sentiment
-                                    </div>
-                                    <div class="col-sm-2">
-   		                                <label><input type="checkbox" name="use_client_sentiment" class="form-control" id="id_use_client_sentiment"> yes</label>
-                                        {{ form.use_client_sentiment.errors }}
-                                    </div>
-                                </div>
-                                
-                                <div class="row shortcheck">
-                                    <div class="col-sm-10">
-   		                                client Sentiment Contrarian
-                                    </div>
-                                    <div class="col-sm-2">
-   		                                <label><input type="checkbox" name="client_sentiment_contrarian" class="form-control" id="id_client_sentiment_contrarian"> yes</label>
-                                        {{ form.client_sentiment_contrarian.errors }}
-                                    </div>
-                                </div>
-                                
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <input type="text" name="client_sentiment_value" class="form-control" id="id_client_sentiment_value">
-                                            {{ form.client_sentiment_value.errors }}
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <input type="text" name="watermark" class="form-control" id="id_watermark">
-                                            {{ form.watermark.errors }}
-                                        </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <input type="number" name="price_charge_hight" class="form-control" id="id_price_charge_hight" value="{{ user.profile.price_charge_hight }}" step="any">
+                                        {{ form.price_charge_hight.errors }}
                                     </div>
                                 </div>
                             </div>
+                                
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <input type="number" name="price_charge_low" class="form-control" id="id_price_charge_low" value="{{ user.profile.price_charge_low }}" step="any">
+                                        {{ form.price_charge_low.errors }}
+                                    </div>
+                                </div>
+                            </div>
+      
+                            <div class="row shortcheck">
+                                <div class="col-sm-8">
+                                    Use client Sentiment
+                                </div>
+                                <div class="col-sm-2">
+                                    {% if user.profile.use_client_sentiment == 'yes'%}
+                                    <label for="id_use_client_sentiment_0"><input type="radio" name="use_client_sentiment" value="yes" class="form-control" required="" checked="checked" id="id_use_client_sentiment_0"> Yes</label>
+                                    {% else %}
+                                    <label for="id_use_client_sentiment_0"><input type="radio" name="use_client_sentiment" value="yes" class="form-control" required="" id="id_use_client_sentiment_0"> Yes</label>
+                                    {% endif %}
+                                    {{ form.use_client_sentiment.errors }}
+                                </div>
+                                <div class="col-sm-2">
+                                    {% if user.profile.use_client_sentiment == 'no'%}
+                                    <label for="id_use_client_sentiment_1"><input type="radio" name="use_client_sentiment" value="no" class="form-control" required="" checked="checked" id="id_use_client_sentiment_1"> No</label>
+                                    {% else %}
+                                    <label for="id_use_client_sentiment_1"><input type="radio" name="use_client_sentiment" value="no" class="form-control" required="" id="id_use_client_sentiment_1"> No</label>
+                                    {% endif %}
+                                    {{ form.use_client_sentiment.errors }}
+                                </div>
+                            </div>
+                                
+                            <div class="row shortcheck">
+                                <div class="col-sm-8">
+                                    client Sentiment Contrarian
+                                </div>
+                                <div class="col-sm-2">
+                                    {% if user.profile.client_sentiment_contrarian == 'yes' %}
+                                    <label for="id_client_sentiment_contrarian_0"><input type="radio" name="client_sentiment_contrarian" value="yes" class="form-control" required="" checked="checked" id="id_client_sentiment_contrarian_0">Yes</label>
+                                    {% else %}
+                                    <label for="id_client_sentiment_contrarian_0"><input type="radio" name="client_sentiment_contrarian" value="yes" class="form-control" required="" id="id_client_sentiment_contrarian_0">Yes</label>
+                                    {% endif %}
+                                    {{ form.client_sentiment_contrarian.errors }}
+                                </div>
+                                <div class="col-sm-2">
+                                    {% if user.profile.client_sentiment_contrarian == 'no' %}
+                                    <label for="id_client_sentiment_contrarian_1"><input type="radio" name="client_sentiment_contrarian" value="no" class="form-control" required="" checked="checked" id="id_client_sentiment_contrarian_1">No</label>
+                                    {% else %}
+                                    <label for="id_client_sentiment_contrarian_1"><input type="radio" name="client_sentiment_contrarian" value="no" class="form-control" required="" id="id_client_sentiment_contrarian_1">No</label>
+                                    {% endif %}
+                                    {{ form.client_sentiment_contrarian.errors }}
+                                </div>
+                            </div>
+                                
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <input type="text" name="client_sentiment_value" class="form-control" id="id_client_sentiment_value" value="{{ user.profile.client_sentiment_value }}">
+                                        {{ form.client_sentiment_value.errors }}
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <input type="text" name="watermark" class="form-control" id="id_watermark" value={{ user.profile.watermark }}>
+                                        {{ form.watermark.errors }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                             
                            
                             <div class="box iqmanaged">

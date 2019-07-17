@@ -26,7 +26,7 @@
 
 <header class="innerpageheader">
 <div class="container-fluid">
-<div class="logo"><a href="index.html"><img src="{% static 'images/logo.png' %}" title="Invest IQ"  alt=""/></a></div>
+<div class="logo"><a href="/"><img src="{% static 'images/logo.png' %}" title="Invest IQ"  alt=""/></a></div>
 <div id='cssmenu' class="menupart">
        <ul>
        <li><a href='#'>About us</a></li>
@@ -37,7 +37,7 @@
     </ul>
      </div>
 <div class="rightbutt">
-<a href="#" class="login" data-toggle="modal" data-target="#myModal">Login</a>
+<a href="{% url 'login' %}" class="login">Login</a>
 <!-- <a href="#" class="getstarted">GET Started</a>-->
 </div>
 <div class="clearfix"></div>
@@ -239,11 +239,28 @@ $(document).ready(function() {
 </script> 
 <script type="text/javascript">
 $(document).ready(function(){
-    $('input[type="radio"]').click(function(){
-        var inputValue = $(this).attr("value");
-        var targetBox = $("." + inputValue);
+    var box_1 = $('input[name="product"][type="radio"]:checked').attr('data-box')
+    console.log(box_1)
+    if (box_1 != '') {
+      var targetBox_1 = $("." + box_1);
+      $(".box").not(targetBox_1).hide();
+      $(targetBox_1).show();
+    } else {
+      $('.box.premium').show()
+    }
+
+
+    $('input[name="product"][type="radio"]').click(function(){
+      var box = $(this).attr('data-box')
+      if (box != '') {
+        var targetBox = $("." + box);
         $(".box").not(targetBox).hide();
         $(targetBox).show();
+      }
+        // var inputValue = $(this).attr("value");
+        // var targetBox = $("." + inputValue);
+        // $(".box").not(targetBox).hide();
+        // $(targetBox).show();
     });
 });
 </script>

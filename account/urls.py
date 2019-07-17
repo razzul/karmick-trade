@@ -7,4 +7,6 @@ urlpatterns = [
     # path('logout/', views.logout, name='logout'),
     path('build-risk-pro/', views.build_risk_pro, name='build_risk_pro'),
     path('pick-product/', views.pick_product, name='pick_product'),
+    path('review/', views.review, name='review'),
+    path('run/', views.run, name='run'),
 ]

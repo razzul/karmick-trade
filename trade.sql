@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 16, 2019 at 08:28 PM
+-- Generation Time: Jul 17, 2019 at 08:45 PM
 -- Server version: 5.7.26-0ubuntu0.18.04.1
 -- PHP Version: 7.2.19-0ubuntu0.18.04.1
 
@@ -43,8 +43,10 @@ CREATE TABLE `account_authuser` (
 --
 
 INSERT INTO `account_authuser` (`id`, `password`, `last_login`, `email`, `first_name`, `last_name`, `active`, `staff`, `admin`) VALUES
-(1, 'pbkdf2_sha256$150000$kG1QPrpsXwUW$HuJ21qbSFcAqCXE80uoY8rA1xF2iizpO0/whfECMy2E=', '2019-07-16 13:27:06.906218', 'rajulmondal5@gmail.com', 'Rajul', 'Mondal', 1, 0, 0),
-(2, 'pbkdf2_sha256$150000$MteKN6fYfDUL$6OeONR9dIwy3S8CT9gq/iXwo+Fo3jr9MrAn7I3Ke6E0=', NULL, 'admin@gmail.com', NULL, NULL, 1, 1, 1);
+(1, 'pbkdf2_sha256$150000$kG1QPrpsXwUW$HuJ21qbSFcAqCXE80uoY8rA1xF2iizpO0/whfECMy2E=', '2019-07-17 14:47:04.291312', 'rajulmondal5@gmail.com', 'Rajul', 'Mondal', 1, 0, 0),
+(2, 'pbkdf2_sha256$150000$MteKN6fYfDUL$6OeONR9dIwy3S8CT9gq/iXwo+Fo3jr9MrAn7I3Ke6E0=', '2019-07-17 14:49:50.601531', 'admin@gmail.com', NULL, NULL, 1, 1, 1),
+(3, 'pbkdf2_sha256$150000$MwiY60ryFVFe$U783VF+Mz46Wh5PtDrQGZbbDe8KEBUoDVxlOpRttBKU=', '2019-07-16 15:46:26.403253', 'charlesgloh@yahoo.com', 'Charles', 'Gloh', 1, 0, 0),
+(14, 'pbkdf2_sha256$150000$lmZjoFIXWiz3$Ve6r5BQdxP7KJvNDS0aYUnWTDCmyRMe/JpSVIZ1WROM=', '2019-07-17 13:55:48.995758', 'rajul@karmicksolutions.com', 'Jhon', 'Mondal', 1, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -59,26 +61,30 @@ CREATE TABLE `account_profile` (
   `twitter` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `birth_date` date DEFAULT NULL,
   `user_id` int(11) NOT NULL,
-  `client_sentiment_contrarian` tinyint(1) NOT NULL,
+  `client_sentiment_contrarian` varchar(3) COLLATE utf8_unicode_ci NOT NULL,
   `client_sentiment_value` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `max_spread` int(11) NOT NULL,
-  `perdiction_accuracy` int(11) NOT NULL,
-  `price_charge_hight` int(11) NOT NULL,
-  `price_charge_low` int(11) NOT NULL,
-  `profit_limit` int(11) NOT NULL,
-  `size` int(11) NOT NULL,
-  `stop_limit` int(11) NOT NULL,
-  `use_client_sentiment` tinyint(1) NOT NULL,
-  `watermark` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
+  `max_spread` double NOT NULL,
+  `perdiction_accuracy` double NOT NULL,
+  `price_charge_hight` double NOT NULL,
+  `price_charge_low` double NOT NULL,
+  `profit_limit` double NOT NULL,
+  `size` double NOT NULL,
+  `stop_limit` double NOT NULL,
+  `use_client_sentiment` varchar(3) COLLATE utf8_unicode_ci NOT NULL,
+  `watermark` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `product` varchar(1) COLLATE utf8_unicode_ci NOT NULL,
+  `currency_1` varchar(6) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `account_profile`
 --
 
-INSERT INTO `account_profile` (`id`, `skype`, `whatsapp`, `twitter`, `birth_date`, `user_id`, `client_sentiment_contrarian`, `client_sentiment_value`, `max_spread`, `perdiction_accuracy`, `price_charge_hight`, `price_charge_low`, `profit_limit`, `size`, `stop_limit`, `use_client_sentiment`, `watermark`) VALUES
-(1, 'rajul_skype', 'rajul_whatsapp', 'rajul_twitter', NULL, 1, 1, 'test', 1, 11, 22, 33, 3, 2, 4, 1, 'test'),
-(2, '', '', '', NULL, 2, 0, NULL, 0, 0, 0, 0, 0, 0, 0, 0, NULL);
+INSERT INTO `account_profile` (`id`, `skype`, `whatsapp`, `twitter`, `birth_date`, `user_id`, `client_sentiment_contrarian`, `client_sentiment_value`, `max_spread`, `perdiction_accuracy`, `price_charge_hight`, `price_charge_low`, `profit_limit`, `size`, `stop_limit`, `use_client_sentiment`, `watermark`, `product`, `currency_1`) VALUES
+(1, 'rajul_skype', 'rajul_whatsapp', 'rajul_twitter', NULL, 1, 'no', '', -0.2, 0, 0, 0, -62, -61, -63, 'no', '', '2', NULL),
+(2, '', '', '', NULL, 2, '0', NULL, 0, 0, 0, 0, 0, 0, 0, '0', NULL, '2', NULL),
+(3, '', '', '', NULL, 3, '0', '65', -2, 80, 1, 0, 10, 1, 15, '1', '95', '2', NULL),
+(14, '', '', '', NULL, 14, '', NULL, 0, 0, 0, 0, 0, 0, 0, '', NULL, '', NULL);
 
 -- --------------------------------------------------------
 
@@ -230,7 +236,12 @@ INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
 (18, 'sessions', '0001_initial', '2019-07-16 10:08:41.258718'),
 (19, 'account', '0002_auto_20190716_1225', '2019-07-16 12:26:56.810853'),
 (20, 'account', '0003_auto_20190716_1226', '2019-07-16 12:26:56.895461'),
-(21, 'account', '0004_auto_20190716_1226', '2019-07-16 12:26:56.945115');
+(21, 'account', '0004_auto_20190716_1226', '2019-07-16 12:26:56.945115'),
+(22, 'account', '0005_auto_20190717_0836', '2019-07-17 08:37:01.246182'),
+(23, 'account', '0006_auto_20190717_0907', '2019-07-17 09:07:27.897525'),
+(24, 'account', '0007_auto_20190717_1003', '2019-07-17 10:03:39.432125'),
+(25, 'account', '0008_profile_product', '2019-07-17 10:07:30.564693'),
+(26, 'account', '0009_profile_currency_1', '2019-07-17 14:22:42.418310');
 
 -- --------------------------------------------------------
 
@@ -250,7 +261,9 @@ CREATE TABLE `django_session` (
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
 ('1ic0js7rjidbv7gnyqtk9afyk7nu61lg', 'YTg3NWE2NjcxMzZkMDkxNTVhYzI1NTA1OTI1OWE2MDA3MzIyNWVhMjp7fQ==', '2019-07-30 10:11:11.331875'),
-('keegtk1s4rtlbuwtwkwkqdcmtjup7nnw', 'ZmViMjllYThhYzJkMzRjZWJlNzU1NjZmOWVmYjI3NGZkY2RhYzMzZTp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJlYTc1MzY2OTBmNjE2ZmYxYWUwYTFmOGE0MTY4N2VhYjc4NTcwMTdlIn0=', '2019-07-30 13:27:07.074053');
+('2gxhjwnez2g25d7ecf86uwmpg8gn1rs3', 'ZmViMjllYThhYzJkMzRjZWJlNzU1NjZmOWVmYjI3NGZkY2RhYzMzZTp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJlYTc1MzY2OTBmNjE2ZmYxYWUwYTFmOGE0MTY4N2VhYjc4NTcwMTdlIn0=', '2019-07-30 16:03:12.121512'),
+('7h8a8qeq64nbxwx050p0w4kgmur9her0', 'YTg3NWE2NjcxMzZkMDkxNTVhYzI1NTA1OTI1OWE2MDA3MzIyNWVhMjp7fQ==', '2019-07-31 13:27:17.494181'),
+('fpk5i5615we4540ydprcude9rcvy1uki', 'MTUyNDFmNDljYTI1ZDBiMDQwYjk0MmZjZDQyMDNhOGRlMTY2YjMzODp7Il9hdXRoX3VzZXJfaWQiOiIyIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJkOTQxYTFjYzc0OGJkODMwZjgxNmY2MTZiMGZmNGY4NDdjYmM1NTliIn0=', '2019-07-31 14:49:50.693630');
 
 --
 -- Indexes for dumped tables
@@ -328,12 +341,12 @@ ALTER TABLE `django_session`
 -- AUTO_INCREMENT for table `account_authuser`
 --
 ALTER TABLE `account_authuser`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `account_profile`
 --
 ALTER TABLE `account_profile`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `auth_group`
 --
@@ -363,7 +376,7 @@ ALTER TABLE `django_content_type`
 -- AUTO_INCREMENT for table `django_migrations`
 --
 ALTER TABLE `django_migrations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 --
 -- Constraints for dumped tables
 --
