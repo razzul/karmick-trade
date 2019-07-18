@@ -49,12 +49,14 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
+                                        <label>perdiction accuracy</label>
                                         <input type="number" name="perdiction_accuracy" class="form-control" id="id_perdiction_accuracy" value="{{ user.profile.perdiction_accuracy }}" step="any">
                                         {{ form.perdiction_accuracy.errors }}
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
+                                        <label>price charge hight</label>
                                         <input type="number" name="price_charge_hight" class="form-control" id="id_price_charge_hight" value="{{ user.profile.price_charge_hight }}" step="any">
                                         {{ form.price_charge_hight.errors }}
                                     </div>
@@ -64,6 +66,7 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
+                                        <label>price charge low</label>
                                         <input type="number" name="price_charge_low" class="form-control" id="id_price_charge_low" value="{{ user.profile.price_charge_low }}" step="any">
                                         {{ form.price_charge_low.errors }}
                                     </div>
@@ -117,12 +120,14 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
+                                        <label>client sentiment value</label>
                                         <input type="text" name="client_sentiment_value" class="form-control" id="id_client_sentiment_value" value="{{ user.profile.client_sentiment_value }}">
                                         {{ form.client_sentiment_value.errors }}
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
+                                        <label>watermark</label>
                                         <input type="text" name="watermark" class="form-control" id="id_watermark" value={{ user.profile.watermark }}>
                                         {{ form.watermark.errors }}
                                     </div>
