@@ -44,14 +44,14 @@ def signup(request):
             user = authenticate(username=username, password=raw_password)
             core_login(request, user)
             # email
-            msg = MIMEText('Testing some Mailgun awesomness')
-            msg['Subject'] = "Hello"
-            msg['From']    = "rajul@karmicksolutions.com"
-            msg['To']      = "rajulmondal5@gmail.com"
-            s = smtplib.SMTP('smtp.mailgun.org', 587)
-            s.login('rajul@mg.pluse.website', '7d0341fa7620512de6068835636cf421-fd0269a6-47d1a988')
-            s.sendmail(msg['From'], msg['To'], msg.as_string())
-            s.quit()
+            # msg = MIMEText('Testing some Mailgun awesomness')
+            # msg['Subject'] = "Hello"
+            # msg['From']    = "rajul@karmicksolutions.com"
+            # msg['To']      = "rajulmondal5@gmail.com"
+            # s = smtplib.SMTP('smtp.mailgun.org', 587)
+            # s.login('rajul@mg.pluse.website', '7d0341fa7620512de6068835636cf421-fd0269a6-47d1a988')
+            # s.sendmail(msg['From'], msg['To'], msg.as_string())
+            # s.quit()
 
             return redirect('build_risk_pro')
     else:
