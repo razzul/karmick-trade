@@ -1,8 +1,8 @@
 {% load static %}
 <header>
   <div class="container-fluid">
-    <div class="logo"><a href="/web-admin/"><img src="{% static 'web-admin/images/logo.png' %}" title="Invest IQ"  alt=""/></a></div>
-    <div class="rightbutt"> <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{% static 'web-admin/images/profilepic.jpg' %}"  alt=""/>Adam</a> 
+    <div class="logo"><a href="/web-admin/"><img src="{% static 'images/web-admin/images/logo.png' %}" title="Invest IQ"  alt=""/></a></div>
+    <div class="rightbutt"> <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="user-logo">{{ user.email|make_list|first|upper }}</span></a> 
     <ul class="dropdown-menu" aria-labelledby="dLabel">
     <li><a href="{% url 'build_risk_pro' %}">Profile</a></li>
     <li><a href="#">Setting</a></li>

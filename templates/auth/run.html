@@ -40,10 +40,11 @@
     
 
 <div class="col-sm-6">
-<input type="button" value="Cancel" class="cancelbutton" onclick="window.location.href='{% url 'dashboard' %}'">
+<input type="button" value="Back" class="cancelbutton" onclick="window.location.href='{% url 'review' %}'">
 </div>
 <div class="col-sm-6">
-<input type="button" value="Run" class="popbutton" onclick="window.location.href='{% url 'run' %}'">
+<input type="button" value="Run" class="popbutton" data-toggle="modal" data-target="#runConfirmModal">
+<!-- <input type="button" value="Run" class="popbutton" onclick="window.location.href='{% url 'dashboard' %}'"> -->
 </div>
 </div>
 
@@ -53,5 +54,21 @@
 </div>
 
 
+</div>
+
+
+<div class="modal fade" id="runConfirmModal" tabindex="-1" role="dialog" aria-labelledby="runConfirmModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <div class="emailnoti">
+                    <h2>Are you sure <br>to run the process!</h2>
+                    <p>Please press Okay to continue</p>
+                    <a href="{% url 'dashboard' %}" class="okbutton">Okay</a>       
+                </div>
+            </div>      
+        </div>
+    </div>
 </div>
 {% endblock content %}

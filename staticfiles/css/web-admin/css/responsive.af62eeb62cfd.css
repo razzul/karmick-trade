@@ -1,0 +1,86 @@
+@media only screen and (min-width : 320px) and (max-width : 639px) {
+	img {max-width: 100%;}
+	.bodyinner{display:block;}
+	.leftpannel{width:100%; position:static;}
+	.rightpannel{width:100%; padding:5%;}
+	.innerblacksec{margin-bottom:10px;}
+	.innerbox{margin-bottom:8px;}
+}
+@media only screen and (min-width : 640px) and (max-width : 767px) {
+	img {max-width: 100%;}
+	.bodyinner{display:block;}
+	.leftpannel{width:100%; position:static;}
+	.rightpannel{width:100%; padding:5%;}
+	.innerblacksec{margin-bottom:10px;}
+	.innerbox{margin-bottom:8px;}
+	
+}
+
+@media only screen and (min-width : 768px) and (max-width : 1023px) {
+	img {max-width: 100%;}
+	
+	.rightpannel { padding: 20px;
+margin-left: 235px;
+width: auto;
+float: none;}
+	.righttopbox .col-sm-3 {
+    width: 50%;
+}
+.innerbox{margin-bottom:30px;}
+	.imagespan {
+    width: 60px;
+    height: 60px; left: 21px; padding-top:11px;
+top: 48px}
+.innerbox {
+    padding: 45px 15px 55px 101px;
+    font-size: 15px;
+}	
+.imagespan img {
+    width: 27px;
+}
+.col-sm-8 {
+    width: 100%;
+}
+.righttopbox .col-sm-8{ width:100%;}
+.rightmiddlebox .col-sm-4{ width:100%; margin-bottom:10px;}
+.rightmiddlebox .col-sm-6{ width:100%; margin-bottom:10px;}
+.rightmiddlebox .col-sm-5{ width:100%; margin-bottom:10px;}
+.rightmiddlebox .col-sm-7{ width:100%; margin-bottom:10px;}
+.innerblacksec{margin-bottom:10px;}
+.bodyinner{display:block;}
+.leftpannel {
+    width: 234px;}
+}
+@media only screen and (min-width : 1024px) and (max-width : 1169px) {
+	img {max-width: 100%;}
+		.righttopbox .col-sm-3 {
+    width: 50%;
+}
+.innerbox{margin-bottom:30px;}	
+.imagespan {
+    width: 60px;
+    height: 60px; left: 21px; padding-top:11px;
+top: 48px}
+.innerbox {
+    padding: 45px 15px 55px 101px;
+    font-size: 15px;
+}	
+.imagespan img {
+    width: 27px;
+}
+.col-sm-8 {
+    width: 100%;
+}
+.righttopbox .col-sm-8{ width:100%;}
+.rightmiddlebox .col-sm-4{ width:100%; margin-bottom:10px;}
+.rightmiddlebox .col-sm-6{ width:100%; margin-bottom:10px;}
+.rightmiddlebox .col-sm-5{ width:100%; margin-bottom:10px;}
+.rightmiddlebox .col-sm-7{ width:100%; margin-bottom:10px;}
+}
+@media only screen and (min-width : 1170px) and (max-width : 1500px) {
+	.righttopbox .col-sm-3 {
+    width: 50%;
+}
+.innerbox{margin-bottom:30px;}	
+
+}

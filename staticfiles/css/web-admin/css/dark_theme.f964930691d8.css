@@ -1,0 +1,9 @@
+header{background:#384452; color:#fff;}
+ header.smaller{background:#27313d; border-bottom: 2px solid #384452;}
+ body{background:#515f6f; color:#dedede; }
+ .leftpannel{background:#232a32;}
+ .leftpannel ul li a{color:#a5a5a5;}
+ .leftpannel ul li a:hover{color:#f26101;}
+ .leftpannel ul li.active a	{color:#f26101;}
+ footer{color:#cecece; background:#384452; }
+ .innerblacksec {background:#232a32; color:#fff;}

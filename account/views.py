@@ -6,6 +6,14 @@ from django.contrib.auth.decorators import login_required
 from account.models import AuthUser, Profile
 import smtplib
 from email.mime.text import MIMEText
+from django.core.mail import send_mail
+from django.contrib import messages
+from django.template.loader import get_template
+from django.template import Context
+
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+
 
 # Create your views here.
 def login(request):
@@ -44,14 +52,8 @@ def signup(request):
             user = authenticate(username=username, password=raw_password)
             core_login(request, user)
             # email
-            # msg = MIMEText('Testing some Mailgun awesomness')
-            # msg['Subject'] = "Hello"
-            # msg['From']    = "rajul@karmicksolutions.com"
-            # msg['To']      = "rajulmondal5@gmail.com"
-            # s = smtplib.SMTP('smtp.mailgun.org', 587)
-            # s.login('rajul@mg.pluse.website', '7d0341fa7620512de6068835636cf421-fd0269a6-47d1a988')
-            # s.sendmail(msg['From'], msg['To'], msg.as_string())
-            # s.quit()
+            res = send_mail("hello paul", "test", "rajul@karmicksolutions.com", [username])
+            messages.add_message(request, messages.INFO, res)
 
             return redirect('build_risk_pro')
     else:
@@ -126,3 +128,12 @@ def review(request):
 @login_required
 def run(request):
     return render(request, 'auth/run.html', {})
+
+def email(request, email_id):
+    user = request.user
+
+    html_message = render_to_string('auth/account_activation_email.html', {'user': user})
+    res = send_mail("Welcome to Karmick Trade", '', "rajul@karmicksolutions.com", [email_id], html_message=html_message)
+    # return HttpResponse('%s'%res)
+    messages.add_message(request, messages.INFO, res)
+    return redirect('build_risk_pro')

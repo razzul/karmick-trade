@@ -37,7 +37,11 @@
     </ul>
      </div>
 <div class="rightbutt">
+{% if user.is_authenticated %}
+<a href="{% url 'logout' %}" class="login">Logout</a>
+{% else %}
 <a href="{% url 'login' %}" class="login">Login</a>
+{% endif %}
 <!-- <a href="#" class="getstarted">GET Started</a>-->
 </div>
 <div class="clearfix"></div>
@@ -265,6 +269,16 @@ $(document).ready(function(){
 });
 </script>
 
-
+<script>
+{% if messages %}
+  {% for message in messages %}
+      {% if message %}
+      $(document).ready(function(){
+        $('#emailNotificationModal').modal('show')
+      })
+      {% endif %}
+  {% endfor %}
+{% endif %}
+</script>
 </body>
 </html>

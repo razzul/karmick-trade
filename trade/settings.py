@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -29,12 +30,13 @@ ALLOWED_HOSTS = []
 LOGIN_REDIRECT_URL = '/web-admin/'
 LOGOUT_REDIRECT_URL = '/'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST = 'smtp.mailgun.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'rajulmondal5@gmail.com'
-EMAIL_HOST_PASSWORD = 'Ishita@1989'
+EMAIL_HOST_USER = 'developer.test.rajul@gmail.com'
+EMAIL_HOST_PASSWORD = 'naughtii30'
+DEFAULT_FROM_EMAIL = 'developer.test.rajul@gmail.com'
 
 # Application definition
 
@@ -96,6 +98,15 @@ DATABASES = {
     #     'HOST': 'localhost',
     #     'PORT': '3306',
     # }
+
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #     'NAME': 'd4usqg8j61k876',
+    #     'USER': 'lotvllfbxugpkx',
+    #     'PASSWORD': '6878ca5c80a630253e83e32126955e0f3dafe16839316eecebd102b8221fe3b9',
+    #     'HOST': 'ec2-174-129-227-51.compute-1.amazonaws.com',
+    #     'PORT': '5432',
+    # }
 }
 
 
@@ -137,3 +148,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+django_heroku.settings(locals())
+
